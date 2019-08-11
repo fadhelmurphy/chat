@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Client</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="scripts/semantic-ui-css/semantic.min.css">
+
+    </head>
+    <body>
+    <div id="loginContainer">
+     <input id="login" value="userA">
+     <button onclick="user_login();">Enter Username</button>
+   </div>
+     <div id="callerIDContainer">
+          <input id="callerID" value="userA">
+          <button onclick="call_user();">Call User</button>
+     </div>
+
+     <div class="chatlist">
+     </div>
+
+               <!-- Chat Room Messages -->
+               <div id="chat"></div>
+     <video id="localVideo"></video>
+    <!-- Remote Cameras -->
+    <h3 class="ui center aligned header">Remote Cameras</h3>
+    <div id="remoteVideos" class="ui stackable grid">
+      <div class="four wide column">
+        <img class="ui centered medium image" src="images/image.png">
+      </div>
+      <div class="four wide column">
+        <img class="ui centered medium image" src="images/image.png">
+      </div>
+      <div class="four wide column">
+        <img class="ui centered medium image" src="images/image.png">
+      </div>
+      <div class="four wide column">
+        <img class="ui centered medium image" src="images/image.png">
+      </div>
+    </div>
+    
+        <!-- TEMPLATES -->
+  <!-- Remote Video Template -->
+  <script id="remote-video-template" type="text/x-handlebars-template">
+    <div id="{{ id }}" class="four wide column">
+      <img class="ui centered medium image" src="images/image.png">
+    </div>
+  </script>
+
+    <!-- Chat Content Template -->
+    <script id="chat-content-template" type="text/x-handlebars-template">
+       <div class="event">
+         <div class="label">
+           <i class="icon blue user"></i>
+         </div>
+         <div class="content">
+           <div class="summary">
+             <a href="#"> {{ chatMessage.from }}</a> posted on
+             <div class="date">
+               {{ chatMessage.postedOn }}
+             </div>
+           </div>
+           <div class="extra text">
+             {{ chatMessage.message }}
+           </div>
+         </div>
+       </div>
+     </script>
+   
+     <!-- Chat Template -->
+     <script id="chat-template" type="text/x-handlebars-template">
+      <div class="{{ room }}">
+       <h3 class="ui orange header">Room ID -> <strong>{{ room }}</strong></h3>
+       <hr>
+       <div id="chat-content-{{ room }}" class="ui feed"> </div>
+       <hr>
+       <div class="ui form">
+         <div class="ui field">
+           <label>Post Message</label>
+           <textarea id="post-message" name="post-message" rows="1"></textarea>
+         </div>
+         <div id="post-btn" class="ui primary submit button">Send</div>
+       </div>
+      </div>
+     </script>   
+
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="scripts/jquery/dist/jquery.min.js"></script>
+    <script src="scripts/semantic-ui-css/semantic.min.js"></script>
+    <script src="scripts/handlebars/dist/handlebars.min.js "></script>
+    <script src="scripts/simplewebrtc/out/simplewebrtc-with-adapter.bundle.js"></script>
+    <script src="js/hello.js"></script>
+  </html>
